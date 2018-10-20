@@ -32,5 +32,6 @@ if (strlen($q)>0)
 }
 
 // 输出结果
-echo $value['snumber'];
+//echo $value['snumber'];
+	echo 123;
 ?>
