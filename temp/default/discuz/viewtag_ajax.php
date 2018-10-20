@@ -1,0 +1,1 @@
+<!--{eval include temp('discuz/'.$themetemp,false)}-->

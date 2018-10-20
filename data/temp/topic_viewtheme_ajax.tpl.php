@@ -1,0 +1,1 @@
+<?php if(is_array($list)) foreach($list as $value) { if($_GET['get']=='ajax') { include temp('reply/reply'); } else { include temp('reply/reply_ajax'); } } ?>

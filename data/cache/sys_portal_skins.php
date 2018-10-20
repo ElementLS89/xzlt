@@ -1,0 +1,377 @@
+<?php
+
+$_S['cache']['portal_skins']=array (
+  1 => 
+  array (
+    'skinid' => '1',
+    'author' => '1',
+    'mid' => 'ad',
+    'formid' => '',
+    'formname' => '',
+    'name' => '图片广告',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'ad_pic',
+  ),
+  2 => 
+  array (
+    'skinid' => '2',
+    'author' => '1',
+    'mid' => 'topnv',
+    'formid' => '',
+    'formname' => '',
+    'name' => '默认样式',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'topnv',
+  ),
+  3 => 
+  array (
+    'skinid' => '3',
+    'author' => '1',
+    'mid' => 'slider',
+    'formid' => '',
+    'formname' => '',
+    'name' => '默认样式',
+    'ishack' => '0',
+    'js' => 'var swiper = new Swiper(\'.currentbody .swiper\', {
+pagination: {el: \'.currentbody .swiper-pagination\'},
+autoplay: {delay: 3000}
+});',
+    'temp' => 'slider',
+  ),
+  4 => 
+  array (
+    'skinid' => '4',
+    'author' => '1',
+    'mid' => 'ann',
+    'formid' => '',
+    'formname' => '',
+    'name' => '默认样式',
+    'ishack' => '0',
+    'js' => '$(function(){
+  setInterval(\'SMS.autoscroll(".currentbody .announcement")\',3000)
+});',
+    'temp' => 'ann',
+  ),
+  5 => 
+  array (
+    'skinid' => '5',
+    'author' => '1',
+    'mid' => 'apps',
+    'formid' => '',
+    'formname' => '',
+    'name' => '滑块模式',
+    'ishack' => '0',
+    'js' => 'var apps_swiper = new Swiper(\'.currentbody .apps_swiper\', {
+ pagination: {el: \'.currentbody .apps_swiper .swiper-pagination\'},
+ autoplay: 5000,
+ paginationClickable: true
+});',
+    'temp' => 'apps_slider',
+  ),
+  6 => 
+  array (
+    'skinid' => '6',
+    'author' => '1',
+    'mid' => 'ad',
+    'formid' => '',
+    'formname' => '',
+    'name' => '文字广告',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'ad_text',
+  ),
+  7 => 
+  array (
+    'skinid' => '7',
+    'author' => '1',
+    'mid' => 'pics',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '列表模式',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'pics_list',
+  ),
+  8 => 
+  array (
+    'skinid' => '8',
+    'author' => '1',
+    'mid' => 'html',
+    'formid' => '',
+    'formname' => '',
+    'name' => '自定义',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'html',
+  ),
+  9 => 
+  array (
+    'skinid' => '9',
+    'author' => '1',
+    'mid' => 'news',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '排行榜样式',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'news_top',
+  ),
+  10 => 
+  array (
+    'skinid' => '10',
+    'author' => '1',
+    'mid' => 'list',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '通栏图文混排',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'list_1',
+  ),
+  11 => 
+  array (
+    'skinid' => '11',
+    'author' => '1',
+    'mid' => 'pics',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '左右滚动样式',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'pics_roll',
+  ),
+  12 => 
+  array (
+    'skinid' => '12',
+    'author' => '1',
+    'mid' => 'pics',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '相册样式',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'pics_album',
+  ),
+  13 => 
+  array (
+    'skinid' => '13',
+    'author' => '1',
+    'mid' => 'news',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '标题列表样式',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'news_list',
+  ),
+  14 => 
+  array (
+    'skinid' => '14',
+    'author' => '1',
+    'mid' => 'list',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '分栏图文混排',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'list_2',
+  ),
+  15 => 
+  array (
+    'skinid' => '15',
+    'author' => '1',
+    'mid' => 'list',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '单图大图模式',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'list_3',
+  ),
+  16 => 
+  array (
+    'skinid' => '16',
+    'author' => '1',
+    'mid' => 'list',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '单图小图模式',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'list_4',
+  ),
+  17 => 
+  array (
+    'skinid' => '17',
+    'author' => '1',
+    'mid' => 'list',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '瀑布流模式',
+    'ishack' => '0',
+    'js' => 'if($(\'.currentbody #waterfall\').length >0) {
+  wf = waterfall();
+}',
+    'temp' => 'list_5',
+  ),
+  18 => 
+  array (
+    'skinid' => '18',
+    'author' => '1',
+    'mid' => 'news',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '图文标题',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'news_pic',
+  ),
+  19 => 
+  array (
+    'skinid' => '19',
+    'author' => '1',
+    'mid' => 'list',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '新闻模式',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'list_6',
+  ),
+  20 => 
+  array (
+    'skinid' => '20',
+    'author' => '1',
+    'mid' => 'news',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '头条排行榜',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'news_topic',
+  ),
+  21 => 
+  array (
+    'skinid' => '21',
+    'author' => '1',
+    'mid' => 'pics',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '活动样式风格',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'pics_act',
+  ),
+  22 => 
+  array (
+    'skinid' => '22',
+    'author' => '1',
+    'mid' => 'pics',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '不规则相册排列',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'pics_irregular',
+  ),
+  23 => 
+  array (
+    'skinid' => '23',
+    'author' => '1',
+    'mid' => 'video',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '大视频',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'video_big',
+  ),
+  24 => 
+  array (
+    'skinid' => '24',
+    'author' => '1',
+    'mid' => 'video',
+    'formid' => 'topic',
+    'formname' => '话题',
+    'name' => '小视频',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'video_small',
+  ),
+  25 => 
+  array (
+    'skinid' => '25',
+    'author' => '1',
+    'mid' => 'users',
+    'formid' => '',
+    'formname' => '',
+    'name' => '推荐用户',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'users',
+  ),
+  26 => 
+  array (
+    'skinid' => '26',
+    'author' => '1',
+    'mid' => 'topic',
+    'formid' => '',
+    'formname' => '',
+    'name' => '推荐板块',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'topic',
+  ),
+  28 => 
+  array (
+    'skinid' => '28',
+    'author' => '1',
+    'mid' => 'topic',
+    'formid' => '',
+    'formname' => '',
+    'name' => '订阅推荐',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'topic_fav',
+  ),
+  29 => 
+  array (
+    'skinid' => '29',
+    'author' => '1',
+    'mid' => 'search',
+    'formid' => '',
+    'formname' => '',
+    'name' => '通栏搜索条',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'search',
+  ),
+  30 => 
+  array (
+    'skinid' => '30',
+    'author' => '1',
+    'mid' => 'topic',
+    'formid' => '',
+    'formname' => '',
+    'name' => '小组板块列表',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'topic_list',
+  ),
+  31 => 
+  array (
+    'skinid' => '31',
+    'author' => '1',
+    'mid' => 'users',
+    'formid' => '',
+    'formname' => '',
+    'name' => '用户列表',
+    'ishack' => '0',
+    'js' => '',
+    'temp' => 'user_list',
+  ),
+)
+
+?>
