@@ -13,7 +13,6 @@ $(window).scroll(function() {
 	var scrollTop_num = $(window).scrollTop();
 	clearTimeout(scroll_times);
 	
-	
 	if($('.currentbody #autoload.auto').length > 0){
 		autoload();
 		var curtop = $(window).scrollTop();
