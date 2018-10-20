@@ -200,7 +200,6 @@ $(document).on('click', '.get', function() {
 });
 
 
-
 /*search*/
 
 $(document).on('click', '.currentbody #searchText', function() {
