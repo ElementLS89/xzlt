@@ -17,9 +17,7 @@ if (strlen($q)>0)
 {
     $sql['select'] = 'SELECT p.*';
     $sql['from'] =' FROM '.DB::table('phone_number_cetc53').' p';
-
     $wherearr[] = 'p.name LIKE'."'%$q%'".' or p.ename LIKE'."'%$q%'".' or p.snumber LIKE'."'%$q'";
-
     $sql['order']='ORDER BY p.id DESC';
 
     $select=select($sql,$wherearr,10);

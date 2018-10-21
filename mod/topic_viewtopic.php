@@ -93,6 +93,19 @@ if($_GET['show']=='member'){
 	$topic['maxmanagers']=$topic['maxmanagers']?$topic['maxmanagers']-$leaders:'0';
 	
 	
+}elseif($_GET['show']=='tips'){
+	$sql['select'] = 'SELECT v.*';
+	$sql['from'] =' FROM '.DB::table('topic_themes').' v';
+	$wherearr[] = "v.tid ='$_GET[tid]'";
+	$sql['left'] .=" LEFT JOIN ".DB::table('topic_tips')." u ON u.uid=v.uid";
+	$sql['order']='ORDER BY v.top DESC,v.dateline DESC';
+	
+	$select=select($sql,$wherearr,10);
+	if($select[1])
+    {
+        $query = DB::query($select[0]);
+        $value = DB::fetch($query);
+    }
 }else{
 
 	//users
@@ -105,7 +118,7 @@ if($_GET['show']=='member'){
 	
 	$_GET['order']=$_GET['order']?$_GET['order']:'new';
 	$sql['select'] = 'SELECT v.*';
-	$sql['from'] ='FROM '.DB::table('topic_themes').' v';
+	$sql['from'] =' FROM '.DB::table('topic_themes').' v';
 	
 	if($_GET['typeid']){
 		$wherearr[] = "v.typeid ='$_GET[typeid]'";

@@ -134,7 +134,9 @@ $(document).on('click', '.get', function() {
 	if(!$('.currentbody #'+box).hasClass('ready') || type=='get'){
 		SMS.loading();
 		$('.currentbody #'+box).addClass('ready');
-		if(box!='vt_searchcall')
+		var reg1=/new\b/;
+		var reg2=/hot\b/;
+		if(reg1.test(box) || reg2.test(box))
 		{
 			$.ajax({
 				type: 'GET',

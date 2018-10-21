@@ -118,8 +118,13 @@
               <a href="topic.php?tid=$_GET['tid']&order=hot" class="get" box="vt_{$_GET['tid']}_hot" btn="type_{$_GET['tid']}">最热</a>
             </li>
             <li{if $_GET['order']=='searchcall'} class="c1 o_c1"{/if} id="type_searchcall">
-              <a href="topic.php?order=searchcall" class="get" box="vt_searchcall" btn="type_searchcall">小号</a>
+              <a href="topic.php?show=searchcall" class="get" box="vt_searchcall" btn="type_searchcall">小号</a>
             </li>
+			  
+			<li{if $_GET['order']=='tips' && !$_GET['typeid']} class="c1 o_c1"{/if} id="type_tips">
+              <a href="topic.php?&show=tips" class="get" box="vt_tips" btn="type_tips">攻略</a>
+            </li>
+			
             <!--{loop $topic['types'] $id $name}-->
             <li{if $_GET['typeid']==$id} class="c1 o_c1"{/if} id="type_{$_GET['tid']}_{$id}">
               <a href="topic.php?tid=$_GET['tid']&typeid=$id" class="get" box="vt_{$_GET['tid']}_new{$id}" btn="type_{$_GET['tid']}_{$id}">$name</a>
@@ -155,6 +160,7 @@
         </div>
         <div id="liveSearch" class="weui-cells searchbar-result"></div>
       </div>
+      <div class="themeslist" id="vt_tips" style="display:none"></div>
 
       <!--{loop $topic['types'] $id $name}-->
       <div class="themeslist" id="vt_{$_GET['tid']}_new{$id}" style="display:none"></div>
