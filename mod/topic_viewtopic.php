@@ -93,7 +93,9 @@ if($_GET['show']=='member'){
 	$topic['maxmanagers']=$topic['maxmanagers']?$topic['maxmanagers']-$leaders:'0';
 	
 	
-}elseif($_GET['show']=='tips'){
+}
+/*
+elseif($_GET['show']=='tips'){
 	$sql['select'] = 'SELECT v.*';
 	$sql['from'] =' FROM '.DB::table('topic_themes').' v';
 	$wherearr[] = "v.tid ='$_GET[tid]'";
@@ -106,7 +108,8 @@ if($_GET['show']=='member'){
         $query = DB::query($select[0]);
         $value = DB::fetch($query);
     }
-}else{
+}*/
+else{
 
 	//users
 	if($topic['price'] && !$topic['level'] && !$canmanage){

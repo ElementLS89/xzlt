@@ -17,7 +17,13 @@
 <div class="themeslist">
   <div id="list">
 <!--{/if}-->
+	  
+<!--{if $_GET['show']=='tips'}-->
+<!--{eval include temp('topic/themes_tips',false)}-->
+<!--{else}-->
 <!--{eval include temp('topic/'.$themetemp,false)}-->
+<!--{/if}-->
+	  
 <!--{if $_S['page']=='1' && $_GET['get']=='ajax'}-->
   </div>
   <div id="page">

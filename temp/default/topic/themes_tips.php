@@ -1,6 +1,6 @@
 <?exit?>
 <div id="view">
-  <div id="main">
+ 
     <div class="smsbody body_b $outback">
 	  <div class="find-items b_c3">
         <ul class="cl c6">
@@ -15,7 +15,7 @@
         </ul>
       </div>
     </div>
-  </div>
+
 </div>
 
 <!--{loop $list $value}-->
@@ -39,7 +39,6 @@
     <!--{/if}-->  
     <!--{/if}-->
     <!--{/if}-->
-    <p class="theme-foot s13">{if $value['lbs']}<span class="r b_c7 c8 ellipsis icon icon-lbs">$value['lbs']</span>{else}<a href="$value['topic_url']" class="c8 r load">$value['topic']</a>{/if}<span class="c4">阅读{$value['views']}</span><em class="c4"></em><span class="c4">评论{$value['replys']}</span><em class="c4"></em><span class="c4">点赞{$value['praise']}</span></p>
   </div>
 </div>
 <!--{/loop}-->
