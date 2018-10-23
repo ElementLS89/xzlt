@@ -2285,8 +2285,8 @@ li {
 /*发现栏目*/
 .find-items {
 	-webkit-overflow-scrolling: touch;
-	overflow-scrolling: touch;
-	overflow-y: scroll;
+/*	overflow-scrolling: touch;
+	overflow-y: scroll;*/
 }
 .find-items.write {
 	background: #fff;
