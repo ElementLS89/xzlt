@@ -97,10 +97,9 @@ if($_GET['show']=='member'){
 /*
 elseif($_GET['show']=='tips'){
 	$sql['select'] = 'SELECT v.*';
-	$sql['from'] =' FROM '.DB::table('topic_themes').' v';
-	$wherearr[] = "v.tid ='$_GET[tid]'";
-	$sql['left'] .=" LEFT JOIN ".DB::table('topic_tips')." u ON u.uid=v.uid";
-	$sql['order']='ORDER BY v.top DESC,v.dateline DESC';
+	$sql['from'] =' FROM '.DB::table('topic_tips').' t';
+	$wherearr[] = "t.tid ='$_GET[tid]'";
+	$sql['order']='ORDER BY v.dateline DESC';
 	
 	$select=select($sql,$wherearr,10);
 	if($select[1])

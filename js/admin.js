@@ -16,6 +16,55 @@ function writeobj(obj){
 } 
 
 
+/* 显示登录窗口 */
+    function shogMinWin(){
+        var mini_login = document.getElementsByClassName("mini_login")[0];
+        var cover = document.getElementsByClassName("cover")[0];
+        mini_login.style.display = "block";
+        cover.style.display = "block";
+        
+        mini_login.style.left = (document.body.scrollWidth - mini_login.scrollWidth) / 2 + "px";
+        mini_login.style.top = (document.body.scrollHeight - mini_login.scrollHeight) / 2 + "px";
+    }
+
+    /* 关闭登录窗口 */
+    function closeMinWin(){
+        var mini_login = document.getElementsByClassName("mini_login")[0];
+        var cover = document.getElementsByClassName("cover")[0];
+        mini_login.style.display = "none";
+        cover.style.display = "none";
+    }
+
+    /* 移动登录窗口 */
+    function moveMinWin(event){
+        var moveable = true;
+
+        //获取事件源
+        event = event ? event : window.event;
+        var clientX = event.clientX;
+        var clientY = event.clientY;
+        
+        var mini_login = document.getElementById("mini_login");
+        console.log(mini_login);
+        var top = parseInt(mini_login.style.top);
+        var left = parseInt(mini_login.style.left);//鼠标拖动
+        document.onmousemove = function(event){
+            if(moveable){
+                event = event ? event : window.event;
+                var y = top + event.clientY - clientY;
+                var x = left + event.clientX - clientX;
+                if(x>0 && y>0){
+                    mini_login.style.top = y + "px";
+                    mini_login.style.left = x + "px";
+                }
+            }
+        }
+        //鼠标弹起
+        document.onmouseup = function(){
+            moveable = false;
+        }
+    }
+
 function checkdelete(form,itemName,id){
 	//alert($(form));
 
@@ -231,6 +280,11 @@ function delpic(aid,area){
 
 
 $(function() {
+	
+	document.getElementById("youlam_btn_showTipsAdd").onclick = shogMinWin;
+    document.getElementById("youlam_btn_close_TipsAdd").onclick = closeMinWin;
+    document.getElementById("firstLine").onmousedown = moveMinWin;
+		
 	$(':text,textarea').keyup(function(event) {
 		event.stopPropagation();
 	});

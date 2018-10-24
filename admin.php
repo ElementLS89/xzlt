@@ -56,6 +56,7 @@ $mods=array(
 	'hacks'=>'应用',
 	'service'=>'服务',
 	'tool'=>'工具',
+	'youlam'=>'永林',
 );
 require ROOT.'./admin/mod_'.$_GET['mod'].'.php';
 include temp('index');
