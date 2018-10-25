@@ -64,6 +64,32 @@ function writeobj(obj){
             moveable = false;
         }
     }
+/*youlam_tips.php文件中选择分类中select选择后提交*/
+function submitTipsForm(){
+	var val = $("#youlam_tips_class_select1 option:selected").val();
+	var url="youlam.php?mod=youlam&item=tips&firstClass="+val;
+//	var url="./admin/mod_youlam.php";
+//	document.getElementById("youlam_tips_class_select2").innerHTML="<option>AAA</option><option>bbb</option>";
+	$.ajax({
+		type: 'GET',
+		url: url,
+		dataType: 'json',
+		success: function(s) {
+	//		console.log(s);
+			var objKeys=Object.keys(s);	//Object.keys()方法把对象的key存储成一个array
+	//		console.log(objKeys);	//Array [ "2", "3"]
+	//		console.log(objKeys.length);	//2
+			var buf = "";
+			for(var i=0;i<objKeys.length;i++){
+				buf += "<option>"+s[objKeys[i]]["name"]+"</option>";
+			}
+			document.getElementById("youlam_tips_class_select2").innerHTML=""+buf;
+		},
+		error: function(data) {
+			alert('发生错误');
+		}
+	});
+}
 
 function checkdelete(form,itemName,id){
 	//alert($(form));

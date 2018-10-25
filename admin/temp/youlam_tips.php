@@ -60,26 +60,28 @@
 <div class="block">
 <h3>选择分类</h3>
 <table class="table" cellpadding="0" cellspacing="0">
+<form id="youlam_tips_class_form" action="#" method='post'>
   <tr>
   <th>一级分类</th>
     <td>
       <div class="select">
-        <select name="search[groupid]">
+        <select id="youlam_tips_class_select1" onchange="submitTipsForm(this.id);">
           <option value="">请选择</option>
-          <!--{loop $types $value}-->
-            <option value="$value['gid']">$value['name']</option>
+          <!--{loop $firstTypes $value}-->
+            <option value="$value['typeid']">$value['name']</option>
           <!--{/loop}-->
         </select>
       </div>  
     </td>
   </tr>
+</form>
   <tr>
   <th>二级分类</th>
     <td>
       <div class="select">
-        <select name="search[groupid]">
+        <select id="youlam_tips_class_select2" onchange="submitTipsForm(this.id);">
           <option value="">请选择</option>
-          <!--{loop $_S['cache']['usergroup'] $value}-->
+          <!--{loop $secondTypes $value}-->
             <option value="$value['gid']">$value['name']</option>
           <!--{/loop}-->
         </select>
@@ -110,9 +112,9 @@
     <tbody>
       <tr>
         <td class="s"><label class="checkbox"><input type="checkbox" class="check" name="sid[]" value="$value['sid']"/><span class="icon"></span></label></td>
-        <td class="l"><input type="text" class="input" name="list[]" value="$value['list']"></td>
+        <td class="l"><input type="text" class="input" name="list[]" value="$_GET['item']"></td>
         <td class="w300">
-        <img src="$_S[atc]/$value['pic']" />$value['name']<a href="admin.php?mod=$_GET['mod']&item=$_GET['item']&ac=edit&sid=$value['sid']&iframe=yes"><em>[编辑]</em></a>
+        <img src="$_S[atc]/$value['pic']" />$_GET['item']<a href="admin.php?mod=$_GET['mod']&item=$_GET['item']&ac=edit&sid=$value['sid']&iframe=yes"><em>[编辑]</em></a>
         </td>
 		  
         <td>$value['url']</td>
@@ -141,7 +143,7 @@
         <span class="login_close" id="youlam_btn_close_TipsAdd">X</span>
     </div>
 	<div class="block">
-	  <form action="admin.php?mod=$_GET['mod']&item=$_GET['item']&ac=$_GET['ac']" method="post" enctype="multipart/form-data">
+	  <form action="admin.php?mod=$_GET['mod']&item=$_GET['item']&ac=add" method="post" enctype="multipart/form-data">
 		<input name="iframe" type="hidden" value="true" />
 		<input name="hash" type="hidden" value="$_S['hash']" />
 		<input name="type" type="hidden" value="forum" />
@@ -151,11 +153,11 @@
 		<table class="minWinTable" cellpadding="0" cellspacing="0">
 		  <tr>
 			<th>名称</th>
-			<td><input type="text" class="input w300" name="name" value="$slider['name']"></td>
+			<td><input type="text" class="input w300" name="name" value=""></td>
 		  </tr>
 		  <tr>
 			<th>链接地址</th>
-			<td><input type="text" class="input w300" name="url" value="$slider['url']"></td>
+			<td><input type="text" class="input w300" name="url" value=""></td>
 		  </tr>
 		  <tr>
 			<th>图片</th>

@@ -124,6 +124,10 @@
 			<li{if $_GET['order']=='tips' && !$_GET['typeid']} class="c1 o_c1"{/if} id="type_tips">
               <a href="topic.php?tid=$_GET['tid']&show=tips" class="get" box="vt_tips" btn="type_tips">攻略</a>
             </li>
+			  
+			<li{if $_GET['order']=='XXX' && !$_GET['typeid']} class="c1 o_c1"{/if} id="type_XXX">
+              <a href="topic.php?tid=$_GET['tid']&show=XXX" class="get" box="vt_XXX" btn="type_XXX">发票查询</a>
+            </li>
 			
             <!--{loop $topic['types'] $id $name}-->
             <li{if $_GET['typeid']==$id} class="c1 o_c1"{/if} id="type_{$_GET['tid']}_{$id}">
