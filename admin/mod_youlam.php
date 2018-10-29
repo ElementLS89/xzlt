@@ -51,17 +51,12 @@ if($_GET['item']=='index'){
 	while($value = DB::fetch($query)) {
 		$firstTypes[$value['typeid']]=$value;
 	}
-	if($_GET['firstClass']){
-/*		$query = DB::query("SELECT * FROM ".DB::table('topic')." WHERE typeid=".$_GET['firstClass']);
+}elseif($_GET['item']=='tips_ajax'){
+	if($_GET['selectSecondClass']){
+		$query = DB::query("SELECT * FROM ".DB::table('topic_tips')." WHERE tid=".$_GET['selectSecondClass']);
 		while($value = DB::fetch($query)) {
-			$secondTypes[$value['typeid']]=$value;
+			$tipsList[$value['vid']]=$value;
 		}
-	*/	
 	}
-	/*if(in_array($_GET['ac'],array('add','edit'))){
-		
-	}*/
-}else{
-
 }
 ?>

@@ -65,31 +65,107 @@ function writeobj(obj){
         }
     }
 /*youlam_tips.php文件中选择分类中select选择后提交*/
-function submitTipsForm(){
+function submitTipsSelect1(){
 	var val = $("#youlam_tips_class_select1 option:selected").val();
-	var url="youlam.php?mod=youlam&item=tips&firstClass="+val;
-//	var url="./admin/mod_youlam.php";
-//	document.getElementById("youlam_tips_class_select2").innerHTML="<option>AAA</option><option>bbb</option>";
+	var url="youlam.php?mod=youlam&item=tips&ac=select&selectFirstClass="+val;
 	$.ajax({
 		type: 'GET',
 		url: url,
 		dataType: 'json',
 		success: function(s) {
-	//		console.log(s);
-			var objKeys=Object.keys(s);	//Object.keys()方法把对象的key存储成一个array
-	//		console.log(objKeys);	//Array [ "2", "3"]
-	//		console.log(objKeys.length);	//2
-			var buf = "";
-			for(var i=0;i<objKeys.length;i++){
-				buf += "<option>"+s[objKeys[i]]["name"]+"</option>";
+		//	console.log(s);
+			if(!s && typeof(s)!="undefined" && s != 0){
+				document.getElementById("youlam_tips_class_select2").options.length = 0;
+				document.getElementById("youlam_tips_class_select2").innerHTML="<option>请选择</option>"
+				alert('此一级分类下的二级分类为空！');
+				$('#div_tips_list').empty();
+			//	document.getElementById("youlam_tips_modify_btn").style.display = "none";	//“提交”按钮和“+增加导航”链接均隐藏
+			//	document.getElementById("youlam_btn_showTipsAdd").innerHTML = "";
+			}else{
+				var objKeys=Object.keys(s);	//Object.keys()方法把对象的key存储成一个array
+		//		console.log(objKeys);	//Array [ "2", "3"]
+		//		console.log(objKeys.length);	//2
+				var objOption = document.getElementById("youlam_tips_class_select2");
+				for(var i=0;i<objKeys.length;i++){
+					objOptionText = s[objKeys[i]]["name"];
+					objOptionValue = s[objKeys[i]]["tid"];
+					objOption.options.add(new Option(objOptionText,objOptionValue));
+				}
 			}
-			document.getElementById("youlam_tips_class_select2").innerHTML=""+buf;
+		},
+		error: function(data) {
+			alert('发生错误！！');
+		}
+	});
+}
+function submitTipsSelect2(){
+	var val = $("#youlam_tips_class_select2 option:selected").val();
+	var url="admin.php?mod=youlam&item=tips_ajax&iframe=1&selectSecondClass="+val;
+	$.ajax({
+		type: 'GET',
+		url: url,
+		dataType: 'html',
+		success: function(s) {
+		//	console.log(s);
+			var list=$(s).find('#tips_ajax_list').html();
+			console.log(list);
+			$('#div_tips_list').html(list);
+		},
+		error: function(data) {
+			alert('发生错误！！');
+		}
+	});
+//	document.getElementById("youlam_tips_modify_btn").style.display = "";	//显示“提交”按钮和“+增加导航”链接
+//	document.getElementById("youlam_btn_showTipsAdd").innerHTML="+增加导航";
+}
+/*
+function youlam_tips_miniBtn(){
+	
+	if((form.name.value != '') && (form.url.value != '') && (form.url.value != '')){
+		var val = $("#youlam_tips_class_select2 option:selected").val();
+		var url="youlam.php?mod=youlam&item=tips&ac=add";
+		alert(form.name);
+		$.post(url,{selectSecondClass:val,name:form.name,url:form.url},function(data){
+			alert(data);
+		});
+	}else{
+		alert('数据不能为空');
+	}
+//	console.log($("form").serialize());
+	$.ajax({
+		type: 'GET',
+		url: url,
+		data:$('form').serialize(),
+		dataType: 'json',
+		success: function(s) {
+			console.log(s);
+		},
+		error: function(data) {
+			alert('发生错误！！');
+			
+		}
+	});
+}
+*/
+$(document).on('click', '#youlam_tips_miniBtn', function() {
+	var val = $("#youlam_tips_class_select2 option:selected").val();
+	var url = "youlam.php?mod=youlam&item=tips&ac=add";
+//	console.log($('form').serialize());
+	$.ajax({
+		type: 'GET',
+		url: url,
+		data:{selectSecondClass:val,name:'test1',url:'test1/a.php'},
+		dataType: '',
+		success: function(s) {
+			console.log(s);
 		},
 		error: function(data) {
 			alert('发生错误');
 		}
 	});
-}
+	
+	return false;
+});
 
 function checkdelete(form,itemName,id){
 	//alert($(form));

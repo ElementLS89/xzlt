@@ -56,16 +56,16 @@
 	.minWinTable th{ width:90px; text-align:right; padding:10px; line-height:36px; vertical-align:top; }
 	.minWinTable td{ padding:10px; position:relative}
 	.minWinTable tfoot td{ padding-left:230px; padding-bottom:20px;}
-    </style> 
+</style>
+
 <div class="block">
 <h3>选择分类</h3>
 <table class="table" cellpadding="0" cellspacing="0">
-<form id="youlam_tips_class_form" action="#" method='post'>
   <tr>
   <th>一级分类</th>
     <td>
       <div class="select">
-        <select id="youlam_tips_class_select1" onchange="submitTipsForm(this.id);">
+        <select id="youlam_tips_class_select1" onchange="submitTipsSelect1();">
           <option value="">请选择</option>
           <!--{loop $firstTypes $value}-->
             <option value="$value['typeid']">$value['name']</option>
@@ -74,16 +74,12 @@
       </div>  
     </td>
   </tr>
-</form>
   <tr>
   <th>二级分类</th>
     <td>
       <div class="select">
-        <select id="youlam_tips_class_select2" onchange="submitTipsForm(this.id);">
+        <select id="youlam_tips_class_select2" onchange="submitTipsSelect2();">
           <option value="">请选择</option>
-          <!--{loop $secondTypes $value}-->
-            <option value="$value['gid']">$value['name']</option>
-          <!--{/loop}-->
         </select>
       </div>  
     </td>
@@ -92,48 +88,11 @@
 </div>
 
 
-<form action="admin.php?mod=$_GET['mod']&item=$_GET['item']" method="post">
-  <input name="iframe" type="hidden" value="true" />
-  <input name="hash" type="hidden" value="$_S['hash']" />
-  <input name="dosubmit" type="hidden" value="true" />
-  <input name="confirm" type="hidden" id="confirm" value="" />
-  <table cellpadding="0" cellspacing="0" class="list">
-    <thead>
-      <tr>
-        <td class="s">删除</td>
-        <td class="l">顺序</td>
-        <td class="w300">名称</td>
-		<td class="s">可用</td>
-        <td>链接地址</td>
-      </tr>
-    </thead>
-    <!--{loop $sliders $value}-->
-    <input type="hidden" name="sids[]" value="$value['sid']">
-    <tbody>
-      <tr>
-        <td class="s"><label class="checkbox"><input type="checkbox" class="check" name="sid[]" value="$value['sid']"/><span class="icon"></span></label></td>
-        <td class="l"><input type="text" class="input" name="list[]" value="$_GET['item']"></td>
-        <td class="w300">
-        <img src="$_S[atc]/$value['pic']" />$_GET['item']<a href="admin.php?mod=$_GET['mod']&item=$_GET['item']&ac=edit&sid=$value['sid']&iframe=yes"><em>[编辑]</em></a>
-        </td>
-		  
-        <td>$value['url']</td>
-      </tr>
-    </tbody>
-    <!--{/loop}-->
-    <tfoot>
-      <tr>
-        <td class="s"><label class="checkbox"><input type="checkbox" class="check" onclick="checkall(this, 'sid[]')"/><span class="icon"></span></label></td>
-        <td colspan="3">
-			<button type="button" class="button" onclick="checkdelete(this.form,'sid')">提交</button>
-			<a href="javascript:void(0)" class="btn_login" id="youlam_btn_showTipsAdd">+增加导航</a>
-		</td>
 
-      </tr>
-    </tfoot>
+	<div id="div_tips_list">
     
-  </table>
-</form>
+	</div>
+
 
 
 <!-- 弹出登录小窗口 -->
@@ -143,13 +102,7 @@
         <span class="login_close" id="youlam_btn_close_TipsAdd">X</span>
     </div>
 	<div class="block">
-	  <form action="admin.php?mod=$_GET['mod']&item=$_GET['item']&ac=add" method="post" enctype="multipart/form-data">
-		<input name="iframe" type="hidden" value="true" />
-		<input name="hash" type="hidden" value="$_S['hash']" />
-		<input name="type" type="hidden" value="forum" />
-		<!--{if $_GET['sid']}-->
-		<input name="sid" type="hidden" value="$_GET['sid']" />
-		<!--{/if}-->
+	  <form action="#" method="post" enctype="multipart/form-data">
 		<table class="minWinTable" cellpadding="0" cellspacing="0">
 		  <tr>
 			<th>名称</th>
@@ -166,7 +119,8 @@
 		  <tfoot>  
 			<tr>
 			  <td colspan="2">
-				<button type="submit" class="button" name="submit" value="true">提交</button>
+		<!--		<button type="submit" class="button" name="submit" value="true" onClick="youlam_tips_miniBtn()">提交</button>-->
+		 		  <input id="youlam_tips_miniBtn" type="submit" class="button" name="submit" value="提交">
 			  </td>
 			</tr>  
 		  </tfoot>
