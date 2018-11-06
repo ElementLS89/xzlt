@@ -117,17 +117,6 @@
             <li{if $_GET['order']=='hot' && !$_GET['typeid']} class="c1 o_c1"{/if} id="type_{$_GET['tid']}">
               <a href="topic.php?tid=$_GET['tid']&order=hot" class="get" box="vt_{$_GET['tid']}_hot" btn="type_{$_GET['tid']}">最热</a>
             </li>
-            <li{if $_GET['order']=='searchcall'} class="c1 o_c1"{/if} id="type_searchcall">
-              <a href="topic.php?show=searchcall" class="get" box="vt_searchcall" btn="type_searchcall">小号</a>
-            </li>
-			  
-			<li{if $_GET['order']=='tips' && !$_GET['typeid']} class="c1 o_c1"{/if} id="type_tips">
-              <a href="topic.php?tid=$_GET['tid']&show=tips" class="get" box="vt_tips" btn="type_tips">攻略</a>
-            </li>
-			  
-			<li{if $_GET['order']=='XXX' && !$_GET['typeid']} class="c1 o_c1"{/if} id="type_XXX">
-              <a href="topic.php?tid=$_GET['tid']&show=XXX" class="get" box="vt_XXX" btn="type_XXX">发票查询</a>
-            </li>
 			
             <!--{loop $topic['types'] $id $name}-->
             <li{if $_GET['typeid']==$id} class="c1 o_c1"{/if} id="type_{$_GET['tid']}_{$id}">
@@ -151,21 +140,7 @@
       
       <div class="ready current themeslist" id="vt_{$_GET['tid']}_new"><!--{template topic/viewtopic_ajax}--></div>
       <div class="themeslist" id="vt_{$_GET['tid']}_hot" style="display:none"></div>
-      <div class="themeslist" id="vt_searchcall" style="display:none">
-        <div class="weui-search-bar" id="liveSearchBar">
-          <form class="weui-search-bar__form">
-            <div class="weui-search-bar__box"> <i class="weui-icon-search"></i>
-              <input type="search" class="weui-search-bar__input" id="liveSearchInput" onkeyup="showLiveSearchResult(this.value)" name="k" placeholder="搜索" required>
-              <a href="javascript:" class="weui-icon-clear" id="liveSearchClear"></a>
-            </div>
-            <label class="weui-search-bar__label" id="liveSearchText"> <i class="weui-icon-search"></i> <span>搜索</span> </label>
-          </form>
-          <a href="javascript:" class="weui-search-bar__cancel-btn" id="liveSearchCancel">取消</a>
-        </div>
-        <div id="liveSearch" class="weui-cells searchbar-result"></div>
-      </div>
-      <div class="themeslist" id="vt_tips" style="display:none"></div>
-
+      
       <!--{loop $topic['types'] $id $name}-->
       <div class="themeslist" id="vt_{$_GET['tid']}_new{$id}" style="display:none"></div>
       <!--{/loop}-->      

@@ -93,22 +93,12 @@ if($_GET['show']=='member'){
 	$topic['maxmanagers']=$topic['maxmanagers']?$topic['maxmanagers']-$leaders:'0';
 	
 	
-}
-/*
-elseif($_GET['show']=='tips'){
-	$sql['select'] = 'SELECT v.*';
-	$sql['from'] =' FROM '.DB::table('topic_tips').' t';
-	$wherearr[] = "t.tid ='$_GET[tid]'";
-	$sql['order']='ORDER BY v.dateline DESC';
-	
-	$select=select($sql,$wherearr,10);
-	if($select[1])
-    {
-        $query = DB::query($select[0]);
-        $value = DB::fetch($query);
-    }
-}*/
-else{
+}elseif($_GET['typeid']){
+	$query = DB::query("SELECT * FROM ".DB::table('topic_tips')." WHERE tid=".$_GET['tid']);
+	while($value = DB::fetch($query)) {
+		$tipsList[$value['vid']]=$value;
+	}
+}else{
 
 	//users
 	if($topic['price'] && !$topic['level'] && !$canmanage){

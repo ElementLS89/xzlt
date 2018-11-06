@@ -8,7 +8,7 @@ require_once './admin/function.php';
 $S = new S();
 $S -> star();
 if($_GET['mod']=='youlam'){
-	if($_GET['item']=='tips'){
+	if($_GET['item']=='topic'){
 		if($_GET['ac']=='select'){
 			if($_GET['selectFirstClass']){
 				$query = DB::query("SELECT * FROM ".DB::table('topic')." WHERE typeid=".$_GET['selectFirstClass']);
@@ -19,25 +19,14 @@ if($_GET['mod']=='youlam'){
 					echo json_encode($secondTypes);
 				}else{}
 			}elseif($_GET['selectSecondClass']!='请选择'){
-				$query = DB::query("SELECT * FROM ".DB::table('topic_tips')." WHERE tid=".$_GET['selectSecondClass']);
-				while($value = DB::fetch($query)) {
-					$tipsList[$value['vid']]=$value;
-				}
-				if(!empty($tipsList)){
-					echo json_encode($tipsList);
+				$typesList = DB::fetch_first("SELECT * FROM ".DB::table('topic')." WHERE tid=".$_GET['selectSecondClass']);
+				$typesList['types']=dunserialize($typesList['types']);
+				
+				if(!empty($typesList)){
+					echo json_encode($typesList);
 				}else{}
 			}
-		}elseif($_GET['ac']=='add'){
-			if($_GET['selectSecondClass']){
-				$s['tid']=$_GET['selectSecondClass'];
-				$s['subject']=$_GET['name'];
-				$s['link']=$_GET['url'];
-			//	$s['imgs']=$_GET['pic'];
-				
-				insert('topic_tips',$s);
-				echo $s['subject'];
-			}
-		}
+		}else{}
 	}
 }
 ?>

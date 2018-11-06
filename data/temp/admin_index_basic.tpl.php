@@ -26,6 +26,14 @@
         <td><?php if($_S['setting']['qrcode']) { ?><img src="<?php echo $_S['atc'];?>/<?php echo $_S['setting']['qrcode'];?>"><?php } ?><input type="file" name="qrcode"><em>将显示再PC版的首页，如果无自定义二维码系统会生成一个默认的二维码</em></td>
       </tr>
       <tr>
+        <th>开启PC访问</th>
+        <td>
+        <label class="radio"><input type="radio" class="check" name="pc" value="1" <?php if($_S['setting']['pc']) { ?>checked<?php } ?>/><span class="icon"></span>是</label>
+        <label class="radio"><input type="radio" class="check" name="pc" value="0" <?php if(!$_S['setting']['pc']) { ?>checked<?php } ?>/><span class="icon"></span>否</label>
+        <em>是否开启PC版访问</em>
+        </td>
+      </tr>
+      <tr>
         <th>关闭站点</th>
         <td>
         <label class="radio"><input type="radio" class="check" name="close" value="1" <?php if($_S['setting']['close']) { ?>checked<?php } ?>/><span class="icon"></span>是</label>

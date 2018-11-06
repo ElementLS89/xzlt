@@ -12,7 +12,11 @@
 <?php } } else { if($_S['page']=='1' && $_GET['get']=='ajax') { ?>
 <div class="themeslist">
   <div id="list">
-<?php } include temp('topic/'.$themetemp,false)?><?php if($_S['page']=='1' && $_GET['get']=='ajax') { ?>
+<?php } ?>
+  
+<?php if($_GET['show']=='tips') { include temp('topic/themes_tips',false)?><?php } else { include temp('topic/'.$themetemp,false)?><?php } ?>
+  
+<?php if($_S['page']=='1' && $_GET['get']=='ajax') { ?>
   </div>
   <div id="page">
   <?php if($maxpage>1) { ?>

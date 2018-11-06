@@ -18,8 +18,8 @@
   <div id="list">
 <!--{/if}-->
 	  
-<!--{if $_GET['show']=='tips'}-->
-<!--{eval include temp('topic/themes_tips',false)}-->
+<!--{if $_GET['typeid']}-->
+<!--{eval include temp('topic/themes_column_'.$_GET['typeid'],false)}-->
 <!--{else}-->
 <!--{eval include temp('topic/'.$themetemp,false)}-->
 <!--{/if}-->

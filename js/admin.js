@@ -24,7 +24,7 @@ function writeobj(obj){
         cover.style.display = "block";
         
         mini_login.style.left = (document.body.scrollWidth - mini_login.scrollWidth) / 2 + "px";
-        mini_login.style.top = (document.body.scrollHeight - mini_login.scrollHeight) / 2 + "px";
+        mini_login.style.top = (document.body.scrollHeight + mini_login.scrollHeight) / 2 + "px";
     }
 
     /* 关闭登录窗口 */
@@ -64,28 +64,29 @@ function writeobj(obj){
             moveable = false;
         }
     }
-/*youlam_tips.php文件中选择分类中select选择后提交*/
-function submitTipsSelect1(){
-	var val = $("#youlam_tips_class_select1 option:selected").val();
-	var url="youlam.php?mod=youlam&item=tips&ac=select&selectFirstClass="+val;
+/*youlam_topic.php文件中选择分类中select选择后提交*/
+function submitTopicSelect1(){
+	var val = $("#youlam_topic_class_select1 option:selected").val();
+	var url="youlam.php?mod=youlam&item=topic&ac=select&selectFirstClass="+val;
+	$('#youlam_topic_ajax_list').empty();
 	$.ajax({
 		type: 'GET',
 		url: url,
 		dataType: 'json',
 		success: function(s) {
 		//	console.log(s);
-			if(!s && typeof(s)!="undefined" && s != 0){
-				document.getElementById("youlam_tips_class_select2").options.length = 0;
-				document.getElementById("youlam_tips_class_select2").innerHTML="<option>请选择</option>"
+			if(!s){	//返回null
+				document.getElementById("youlam_topic_class_select2").options.length = 0;
+				document.getElementById("youlam_topic_class_select2").innerHTML="<option>请选择</option>"
 				alert('此一级分类下的二级分类为空！');
-				$('#div_tips_list').empty();
-			//	document.getElementById("youlam_tips_modify_btn").style.display = "none";	//“提交”按钮和“+增加导航”链接均隐藏
-			//	document.getElementById("youlam_btn_showTipsAdd").innerHTML = "";
+				$('#youlam_topic_ajax_list').empty();
+			//	$('#youlam_topic_types').empty();	//"选择话题分类"区域清空
+				$('#youlam_add_types').empty();
 			}else{
 				var objKeys=Object.keys(s);	//Object.keys()方法把对象的key存储成一个array
 		//		console.log(objKeys);	//Array [ "2", "3"]
 		//		console.log(objKeys.length);	//2
-				var objOption = document.getElementById("youlam_tips_class_select2");
+				var objOption = document.getElementById("youlam_topic_class_select2");
 				for(var i=0;i<objKeys.length;i++){
 					objOptionText = s[objKeys[i]]["name"];
 					objOptionValue = s[objKeys[i]]["tid"];
@@ -98,78 +99,139 @@ function submitTipsSelect1(){
 		}
 	});
 }
-function submitTipsSelect2(){
-	var val = $("#youlam_tips_class_select2 option:selected").val();
-	var url="admin.php?mod=youlam&item=tips_ajax&iframe=1&selectSecondClass="+val;
+function submitTopicSelect2(){
+	/*
+	var sel=document.getElementsByName("XXX")[0].value; //获取下拉表单的value值
+	*/
+	var val = $("#youlam_topic_class_select2 option:selected").val();	//IE8下可能无法获取到selected的值，可考虑上一行的方法
+	var url="youlam.php?mod=youlam&item=topic&ac=select&selectSecondClass="+val;
+	document.getElementById("youlam_topic_class_select3").options.length = 0;
+	document.getElementById("youlam_topic_class_select3").innerHTML="<option>请选择</option>"
+	$('#youlam_topic_ajax_list').empty();
+	$.ajax({
+		type: 'GET',
+		url: url,
+		dataType: 'json',
+		success: function(s) {
+			var list = s['types'];
+			if(!list){	//返回false
+				document.getElementById("youlam_topic_class_select3").options.length = 0;
+				document.getElementById("youlam_topic_class_select3").innerHTML="<option>请选择</option>"
+				alert('此话题下不存在自定义分栏！');
+				$('#youlam_topic_ajax_list').empty();
+			}else{
+				var objKeys=Object.keys(list);	//Object.keys()方法把对象的key存储成一个array
+				console.log(objKeys);
+				var objOptionSelect3 = document.getElementById("youlam_topic_class_select3");
+				for(var i=0;i<objKeys.length;i++){
+					objOptionText = list[objKeys[i]];
+					objOptionValue = objKeys[i];
+					objOptionSelect3.options.add(new Option(objOptionText,objOptionValue));
+					$("#youlam_miniWin_select option[value="+objKeys[i]+"]").remove();	//删除已经设置的话题分栏
+				}
+			}
+			document.getElementById("youlam_add_types").innerHTML="+调整话题分栏";
+		},
+		error: function(data) {
+			alert('发生错误！！');
+		}
+	});
+}
+function submitMiniSelect(){
+	var val = $("#youlam_miniWin_select option:selected").val();
+	var text = $("#youlam_miniWin_select option:selected").text();
+	document.getElementById('youlam_ajax_miniWin_types_name_id').value = val;
+	document.getElementById('youlam_ajax_miniWin_input_name_array').value = text;
+}
+
+function submitTopicSelect3(){
+	var val2 = $("#youlam_topic_class_select2 option:selected").val();
+	var val3 = $("#youlam_topic_class_select3 option:selected").val();
+	var url="admin.php?mod=youlam&item=topic_ajax&iframe=1&selectSecondClass="+val2;
+	$('#youlam_topic_ajax_list').empty();
+	$.ajax({
+		type: 'GET',
+		url: url,
+		dataType: 'html',
+		success: function(s) {
+	//		console.log(s);
+			if(val3==1){
+				var tipsList=$(s).find('#tips_ajax_list').html();
+				$('#youlam_topic_ajax_list').html(tipsList);
+				document.getElementById('youlam_miniWin_form').action += "&ac=addTips";
+				document.getElementById('youlam_miniWin_form').action += "&selectSecondClass="+val2;
+			}
+		},
+		error: function(data) {
+			alert('发生错误！！');
+		}
+	});
+}
+
+function youlam_add_types(){
+	var val = $("#youlam_topic_class_select2 option:selected").val();
+	var len = document.getElementById('youlam_topic_class_select3').options.length;
+	
+	document.getElementById( "youlam_miniWin_tr_id").style.display= "none";
+	document.getElementById("youlam_miniWin_input_id").value = "";
+	
+	document.getElementById( "youlam_miniWin_input_name").style.display= "none";
+	document.getElementById("youlam_miniWin_input_name").value = "";
+	
+	document.getElementById( "youlam_miniWin_th_name").innerHTML="当前分栏";
+	
+	document.getElementById( "youlam_miniWin_tr_url").style.display= "none";
+	document.getElementById("youlam_miniWin_input_url").value = "";
+/*上面这句话用处很大的，因为你想隐藏掉下面的一个表单，那么这个表单的值也就不需要写入数据库了，所以记得在隐藏的同时将被隐藏表单的值清空；
+当然要是你不嫌麻烦的话在表单的数据提交到php的数据处理页面的时候对“此ID”根据其值是0还是1来行进判断写不写入“此ID”的值 */
+	document.getElementById( "youlam_miniWin_tr_pic").style.display= "none";
+	document.getElementById("youlam_miniWin_input_pic").value = "";
+	
+	//修改form标签中action的值
+	
+/*	document.getElementById('youlam_miniWin_form').action += "&ac=addTopicTypes";
+	document.getElementById('youlam_miniWin_form').action += "&typesId="+len;
+	document.getElementById('youlam_miniWin_form').action += "&selectSecondClass="+val;
+*/	
+	var url="admin.php?mod=youlam&item=topic_ajax&iframe=1&selectSecondClass="+val;
 	$.ajax({
 		type: 'GET',
 		url: url,
 		dataType: 'html',
 		success: function(s) {
 		//	console.log(s);
-			var list=$(s).find('#tips_ajax_list').html();
-			console.log(list);
-			$('#div_tips_list').html(list);
-		},
-		error: function(data) {
-			alert('发生错误！！');
-		}
-	});
-//	document.getElementById("youlam_tips_modify_btn").style.display = "";	//显示“提交”按钮和“+增加导航”链接
-//	document.getElementById("youlam_btn_showTipsAdd").innerHTML="+增加导航";
-}
-/*
-function youlam_tips_miniBtn(){
-	
-	if((form.name.value != '') && (form.url.value != '') && (form.url.value != '')){
-		var val = $("#youlam_tips_class_select2 option:selected").val();
-		var url="youlam.php?mod=youlam&item=tips&ac=add";
-		alert(form.name);
-		$.post(url,{selectSecondClass:val,name:form.name,url:form.url},function(data){
-			alert(data);
-		});
-	}else{
-		alert('数据不能为空');
-	}
-//	console.log($("form").serialize());
-	$.ajax({
-		type: 'GET',
-		url: url,
-		data:$('form').serialize(),
-		dataType: 'json',
-		success: function(s) {
-			console.log(s);
-		},
-		error: function(data) {
-			alert('发生错误！！');
+			var typesList=$(s).find('#youlam_ajax_miniWin_types_div_name').html();
 			
-		}
-	});
-}
-*/
-$(document).on('click', '#youlam_tips_miniBtn', function() {
-	var val = $("#youlam_tips_class_select2 option:selected").val();
-	var url = "youlam.php?mod=youlam&item=tips&ac=add";
-//	console.log($('form').serialize());
-	$.ajax({
-		type: 'GET',
-		url: url,
-		data:{selectSecondClass:val,name:'test1',url:'test1/a.php'},
-		dataType: '',
-		success: function(s) {
-			console.log(s);
+			$('#youlam_miniWin_div_name').html(typesList);
+//			document.getElementById('youlam_ajax_miniWin_types_name_id').value = len;
+			
+			document.getElementById('youlam_miniWin_form').action += "&ac=addTopicTypes";
+			document.getElementById('youlam_miniWin_form').action += "&selectSecondClass="+val;
 		},
 		error: function(data) {
-			alert('发生错误');
+			alert('发生错误！！');
 		}
 	});
 	
-	return false;
-});
+	shogMinWin();
+}
+
+function youlam_btn_showTipsAdd(){
+	document.getElementById( "youlam_miniWin_tr_id").style.display= "none";
+	document.getElementById("youlam_miniWin_input_id").value = "";
+	
+	document.getElementById( "youlam_miniWin_tr_select").style.display= "none";
+	document.getElementById("youlam_miniWin_select").value = "";
+	
+	document.getElementById( "youlam_miniWin_th_name").innerHTML="名称";
+	document.getElementById( "youlam_miniWin_th_url").innerHTML="链接";
+	
+	shogMinWin();
+}
 
 function checkdelete(form,itemName,id){
 	//alert($(form));
-
+	console.log(checkvalue);
 	var checkvalue='';
 	$('input[name="'+itemName+'[]"]:checked').each(function(){    
 		checkvalue+=this.value + ',';
@@ -181,7 +243,10 @@ function checkdelete(form,itemName,id){
 			 if(id){
 				 $('#'+id).val(true);
 			 }
+			console.log(checkvalue);
 		   $(form).submit();
+		//	 document.getElementById("tips_ajax_list").submit();	
+		//	 $("#tips_ajax_list").submit();
 		 }
 	}else{
 		$(form).submit();
@@ -383,8 +448,8 @@ function delpic(aid,area){
 
 $(function() {
 	
-	document.getElementById("youlam_btn_showTipsAdd").onclick = shogMinWin;
-    document.getElementById("youlam_btn_close_TipsAdd").onclick = closeMinWin;
+//	document.getElementById("youlam_btn_showTipsAdd").onclick = shogMinWin;
+    document.getElementById("youlam_miniWin_close").onclick = closeMinWin;
     document.getElementById("firstLine").onmousedown = moveMinWin;
 		
 	$(':text,textarea').keyup(function(event) {

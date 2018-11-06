@@ -134,36 +134,32 @@ $(document).on('click', '.get', function() {
 	if(!$('.currentbody #'+box).hasClass('ready') || type=='get'){
 		SMS.loading();
 		$('.currentbody #'+box).addClass('ready');
-		var reg=/searchcall\b/;
-		if(!reg.test(box))
-		{
-			$.ajax({
-				type: 'GET',
-				url: url+'&get=ajax',
-				dataType: 'html',
-				success: function(s) {
-					if(nopage){
-						$('.currentbody #'+box).html(s);
-					}else{
-						var list=$(s).find('#list').html();
-						var page=$(s).find('#page').html();
-						var script=$(s).find('#script').html();
-						var other=$(s).find('#other').html();
-						if(other){
-							$('.currentbody #otherarea').html(other);
-						}
-						$('.currentbody #'+box).html(list);
-						$('.currentbody #page').html(page);
-						$('.currentbody #'+box+' .lazyload').picLazyLoad();
-						SMS.evalscript(script);		
+		$.ajax({
+			type: 'GET',
+			url: url+'&get=ajax',
+			dataType: 'html',
+			success: function(s) {
+				if(nopage){
+					$('.currentbody #'+box).html(s);
+				}else{
+					var list=$(s).find('#list').html();
+					var page=$(s).find('#page').html();
+					var script=$(s).find('#script').html();
+					var other=$(s).find('#other').html();
+					if(other){
+						$('.currentbody #otherarea').html(other);
 					}
-				},
-				error: function(data) {
-					window.location.href = url;
+					$('.currentbody #'+box).html(list);
+					$('.currentbody #page').html(page);
+					$('.currentbody #'+box+' .lazyload').picLazyLoad();
+					SMS.evalscript(script);		
 				}
-			});
-		}
-		SMS.close();//关闭“数据加载”页面
+				SMS.close();
+			},
+			error: function(data) {
+				window.location.href = url;
+			}
+		});
 	}else{
 		if(!nopage){
 			var page=sessionStorage.getItem($('.currentbody').attr('id')+box+'_page');
